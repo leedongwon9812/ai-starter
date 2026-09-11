@@ -1,1 +1,0 @@
-window.savedCsv = "date,base,currency,rate\n2026-09-09,USD,KRW,1336.2\n2026-09-09,USD,JPY,153.27\n2026-09-09,USD,EUR,0.85822\n";
