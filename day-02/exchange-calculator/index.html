@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>환율 계산기</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f5f1;color:#183d32;font-family:"Malgun Gothic",system-ui,sans-serif}main{max-width:860px;margin:64px auto;padding:0 24px}.eyebrow{font-size:12px;letter-spacing:3px;color:#667b70}h1{font-size:40px;letter-spacing:-2px;margin:14px 0}p{color:#64756c;line-height:1.7}.panel{background:white;padding:32px;border:1px solid #dde5dd;border-radius:24px;margin-top:28px;box-shadow:0 12px 40px #193f3208}.row{display:grid;grid-template-columns:1fr 48px 1fr;gap:16px;align-items:end;margin:24px 0}label{display:block;color:#4d655a;font-size:14px;margin-bottom:9px}input,select{width:100%;border:1px solid #cdd9d0;border-radius:12px;padding:15px;font:inherit;background:#fff;color:#183d32}input[type=number]{font-size:26px}input:focus,select:focus,button:focus-visible{outline:3px solid #9cc9b1;outline-offset:2px}button{cursor:pointer;border:1px solid #cdd9d0;background:#f3f5f1;border-radius:12px;font-size:22px;height:52px}.result{background:#173f33;color:white;border-radius:16px;padding:25px}.result small{color:#bfd3c6}output{display:block;font-size:clamp(28px,5vw,44px);font-weight:700;margin:10px 0;overflow-wrap:anywhere}#equation{font-size:14px;color:#bfd3c6}#error{color:#b33730;min-height:24px;font-size:14px;margin-top:12px}h2{font-size:16px;margin:30px 0 14px}#cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}#cards div{background:#e9eee7;border-radius:14px;padding:18px}#cards span{display:block;color:#66786c;font-size:12px}#cards strong{display:block;font-size:22px;margin-top:10px}.filebox{margin-top:28px;border-top:1px solid #e1e7de;padding-top:22px}input[type=file]{font-size:13px;padding:10px}footer{font-size:12px;margin-top:24px;color:#66786c;line-height:1.9}a{color:inherit}#status{font-size:13px}@media(max-width:540px){main{margin:28px auto;padding:0 16px}.panel{padding:20px}h1{font-size:32px}.row{gap:8px;grid-template-columns:1fr 40px 1fr}select{font-size:13px;padding:12px 6px}#cards{gap:6px}#cards div{padding:12px}#cards strong{font-size:18px}}
+</style>
+</head>
+<body><main>
+<div class="eyebrow">CURRENCY CONVERTER</div>
+<h1>환율 계산기</h1><p>금액을 입력하고 통화를 선택하세요.</p>
+<section class="panel" aria-label="통화 변환">
+<p id="status" role="status">환율 데이터를 불러오는 중입니다.</p>
+<label for="amount">변환할 금액</label><input id="amount" type="number" min="0" step="any" value="100" inputmode="decimal">
+<div class="row"><div><label for="from">보내는 통화</label><select id="from"><option value="USD">USD · 미국 달러</option><option value="KRW">KRW · 한국 원</option><option value="JPY">JPY · 일본 엔</option><option value="EUR">EUR · 유로</option></select></div>
+<button id="swap" aria-label="통화 서로 바꾸기" title="통화 서로 바꾸기">⇄</button>
+<div><label for="to">받는 통화</label><select id="to"><option value="KRW">KRW · 한국 원</option><option value="USD">USD · 미국 달러</option><option value="JPY">JPY · 일본 엔</option><option value="EUR">EUR · 유로</option></select></div></div>
+<div class="result" aria-live="polite"><small>환산 금액</small><output id="result">—</output><div id="equation"></div></div><div id="error" role="alert"></div>
+<h2>1 USD 기준 환율</h2><div id="cards"></div>
+<div class="filebox"><label for="file">다른 CSV 불러오기</label><input id="file" type="file" accept=".csv,text/csv"><p style="font-size:12px">파일을 직접 열면 갱신 시 저장된 CSV 사본을 사용합니다. CSV를 수정했다면 여기서 다시 선택하세요.</p></div>
+</section>
+<footer>출처: <a href="https://api.frankfurter.dev/v1/latest?from=USD&amp;to=KRW,JPY,EUR" target="_blank" rel="noopener">Frankfurter API</a> · 표시 금액은 소수점 둘째 자리까지 반올림합니다.<br>기준일의 참고 환율이며 은행 수수료와 환전 스프레드는 포함하지 않습니다.</footer>
+</main><script src="rates-data.js"></script><script src="calculator.js"></script></body></html>

@@ -1,0 +1,1 @@
+window.savedCsv = "date,base,currency,rate\n2026-09-10,USD,KRW,1343.8\n2026-09-10,USD,JPY,154.18\n2026-09-10,USD,EUR,0.86088\n";
